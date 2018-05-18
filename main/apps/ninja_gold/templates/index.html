@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="well">
+		<h1>Your gold: {{request.session.money}}</h1>
+	</div>
+
+	<div class="row col-sm-12">
+		<form action="/farm" method="post">
+			{% csrf_token %}
+			<div class="form-group">
+				<h4>The Farm </h4>
+				<input type="submit" name="submit">
+			</div>
+		</form>
+		<form action="/cave" method="post">
+			{% csrf_token %}
+			<div class="form-group of">
+				<h4> Cave </h4>
+				<input type="submit" name="submit">
+			</div>
+		</form>
+		<form action="/house" method="post">
+			{% csrf_token %}
+			<div class="form-group">
+				<h4> House </h4>
+				<input type="submit" name="submit">
+			</div>
+		</form>
+		<form action="/casino">
+			{% csrf_token %}
+			<div class="form-group">
+				<h4> Casino </h4>
+				<input type="submit" name="submit">
+			</div>
+		</form>			
+	</div>
+
+	<div class="h-scrollable container-fluid" style="overflow: scroll; height: 200px; border: 1px solid black">
+		<h1>Activity: </h1>
+		{% for i in request.session.transactions reversed %}
+		<p>{{i}}</p><br>
+		{% endfor %}
+	</div>
+
+
+
+</body>
+</html>
